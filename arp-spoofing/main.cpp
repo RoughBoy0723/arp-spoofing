@@ -123,7 +123,8 @@ void relay_packets(pcap_t* handle) {
                 formatMacAddress(mac_obj_str);
 
                 eth_hdr->dmac_ = Mac(mac_obj_str);
-
+                eth_hdr->smac_ = Mac(my_mac);
+                
                 if (pcap_sendpacket(handle, packet, header->caplen) != 0) {
                     fprintf(stderr, "pcap_sendpacket error=%s\n", pcap_geterr(handle));
                 } else {
